@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="/css/flag-icon.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" href="/css/default.css"/>
-    <link rel="stylesheet" href="/css/nouislider.css"/>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/materialize.min.js"></script>
-    <script src="/js/nouislider.min.js"></script>
     <script src="/js/main.js"></script>
     <link rel="stylesheet" href="/css/homepage.css"/>
   </head>

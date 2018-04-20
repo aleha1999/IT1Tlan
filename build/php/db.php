@@ -2,8 +2,8 @@
 class DB {
     private static $DB_host = "localhost";
     private static $DB_username = "root";
-    private static $DB_password = "";
-    private static $DB_database = "tromsolan";
+    private static $DB_password = "root";
+    private static $DB_database = "TromsoLAN";
 
     //Function to return databse connection. Returns false on failure. Takes one variable
     //Vars:
@@ -76,6 +76,9 @@ class QueryBuilder {
     public $success = NULL;
     //Variable to contain error of last mysql stmt
     public $exec_err = NULL;
+    //Order by
+    public $orderby = null;
+    public $orderby_prepped = true;
 
     //Set the method of the class to be select and set the columns to select.
     public function select($columns = "*") {
@@ -170,6 +173,21 @@ class QueryBuilder {
         return $this;
     }
 
+    public function order_by($col,$prepped = true) {
+        $this->orderby .= " ORDER BY ".$col;
+        return $this;
+    }
+
+    public function asc() {
+        $this->orderby .= " ASC";
+        return $this;
+    }
+
+    public function desc() {
+        $this->orderby .= " DESC";
+        return $this;
+    }
+
     //Function that builds the sql statement before it can be executed
     //Automatically called by execute if null.
     //TODO: Lots of variable checking.
@@ -189,6 +207,7 @@ class QueryBuilder {
                 $query .= $this->tables;
             $query .= " WHERE ";
             $query .= $this->where;
+            $query .= $this->orderby;
             $this->query = $query;
         }
 
@@ -258,7 +277,6 @@ class QueryBuilder {
             $this->build();
         //Prepare the statement
         $stmt = $conn->prepare($this->query);
-        echo $conn->error;
         //Detect the types of the variables passed to the array and place them
         //in the type string that is passed to the prepared statement.
         $typestring = "";
@@ -279,7 +297,6 @@ class QueryBuilder {
             call_user_func_array(array($stmt,"bind_param"),$ref);
         }
         $this->success = $stmt->execute();
-        echo $conn->error;
         $this->result = $stmt->get_result();
         $res = $this->result;
         return $this;

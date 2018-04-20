@@ -11,6 +11,18 @@ tlanapi.countries.getCountriesInOrder = function(callback) {
     });
 }
 
-tlanapi.players.add = function(formdata) {
-
+tlanapi.players.add = function(formdata,callback) {
+    $.ajax({
+        url:"/api/players/add.php",
+        data:formdata,
+        type:"POST",
+        processData:false,
+        contentType:false,
+        success:function(data) {
+            if(data.success)
+                callback(true);
+            else
+                callback(false);
+        }
+    });
 }

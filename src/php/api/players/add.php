@@ -1,14 +1,40 @@
 <?php
 require $_SERVER["DOCUMENT_ROOT"]."/php/players.php";
 require $_SERVER["DOCUMENT_ROOT"]."/php/APIFrame.php";
+//Vars
 $fname = $_POST["firstname"];
-$lname = $_POST["lastname"];
-$gamertag = $_POST["gamertag"];
+$lname = $_POST["surname"];
+$gamertag = $_POST["tag"];
 $nationality = $_POST["nationality"];
 $address = $_POST["address"];
 $postnumber = $_POST["postnumber"];
 $phone = $_POST["phone"];
-$
-$countries = Players::add();
-APIFrame::finish(is_array($countries),$countries);
+$email = $_POST["email"];
+$rating = $_POST["rating"];
+//Sanitize
+$fname = filter_var($fname,FILTER_SANITIZE_STRING);
+$lname = filter_var($lname,FILTER_SANITIZE_STRING);
+$gamertag = filter_var($gamertag,FILTER_SANITIZE_STRING);
+$nationality = filter_var($nationality,FILTER_SANITIZE_STRING);
+$address = filter_var($address,FILTER_SANITIZE_STRING);
+$postnumber = filter_var($postnumber,FILTER_SANITIZE_NUMBER_INT);
+$phone = filter_var($phone,FILTER_SANITIZE_NUMBER_INT);
+$email = filter_var($email,FILTER_SANITIZE_EMAIL);
+$rating = filter_var($rating,FILTER_SANITIZE_NUMBER_INT);
+
+//Do some variable checking
+$vars = array(&$fname,&$lname,&$gamertag,&$nationality,&$address,&$postnumber,&$phone,&$email,&$rating);
+APIFrame::emptyToNull($vars);
+$success = Players::add(
+    $fname,
+    $lname,
+    $phone,
+    $gamertag,
+    $rating,
+    $nationality,
+    $email,
+    $address,
+    $postnumber
+);
+APIFrame::finish($success);
 ?>
