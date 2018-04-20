@@ -1,0 +1,34 @@
+extends /template/template_main.pug
+
+block head
+    link(rel="stylesheet",href="/css/homepage.css")
+
+block content
+    div.wrapper
+        h1 Velkommen til TromsøLAN!
+        h2 4. - 7. Oktober 2018
+        div
+            a.btn(href="/teams/") Se og registrer lag her
+            span.btnsep
+            a.btn(href="/players/") Se og registrer deltager
+        div.stats.row
+            div.col.s4
+                h4 Ledende <br> Lag
+                table
+                    tr
+                        th Lagnavn
+                        th Poeng
+            div.col.s4
+                h4 Kommende Konkurranser
+                table
+                    tr
+                        th Konkurranse
+                        th Tid
+                        th Vinner
+            div.col.s4
+                h4 Fullførte Konkurranser
+                table
+                    tr
+                        th Konkurranse
+                        th Tid
+                        th Spill

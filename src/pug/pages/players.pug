@@ -1,0 +1,78 @@
+extends /template/template_main.pug
+
+block head
+    script(src="/js/tlanapi.js")
+    script(src="/js/players.js")
+
+block content
+    h1 Spillerdatabase
+    div.fixed-action-btn
+        a(href="#add_player_modal").modal-trigger.btn-floating.btn-large.waves-effect.waves-light
+            i.material-icons add
+    table.striped
+        tr.head
+            th Fornavn
+            th Etternavn
+            th E-post
+            th Gamertag
+            th Nasjonalitet
+            th Handlinger
+        tr#player_proto
+            td Firstname
+            td Surname
+            td EMAIL
+            td GAMERTAG
+            td 
+                i.flag-icon.flag-icon-no(title="Norge")
+            td
+                i.material-icons.red-text delete
+                span.btnsep
+                i.material-icons.orange-text edit
+                span.btnsep
+                i.material-icons.blue-text info
+    div#add_player_modal.modal.no-autoinit
+        div.modal-content
+            h4 Legg til/rediger en spiller
+            form#add_player_form
+                h5 Navn
+                div.row
+                    div.col.s6.input-field
+                        input(type="text",name="firstname",required)#fname
+                        label(for="fname") Fornavn
+                    div.col.s6.input-field
+                        input(type="text",name="surname",required)#sname
+                        label(for="sname") Etternavn
+                h5 Spillerinformasjon
+                div.row
+                    div.col.s6.input-field
+                        input(type="text",name="tag",required)#gtag
+                        label(for="gtag") Gamertag
+                    div.col.s6.input-field
+                        input(name="nationality",type="text").autocomplete#nat
+                        label(for="nat") Nasjonalitet
+                h5 Adresse
+                div.row
+                    div.col.s9.input-field
+                        input(type="text",name="address")#address
+                        label(for="address") Adresse
+                    div.col.s3.input-field
+                        input(type="number",name="postnumber")#pnumber
+                        label(for="pnumber") Postnummer
+                h5 Kontaktinformasjon
+                div.row
+                    div.col.s6.input-field
+                        i.material-icons.prefix phone
+                        input(type="number",name="phone",required)#phone
+                        label(for="phone") Telefonnummer
+                    div.col.s6.input-field
+                        i.material-icons.prefix mail
+                        input(type="email",name="email",required)#email
+                        label(for="email") E-post
+                h5 Spillerrating
+                h6 0-100
+                div.row
+                    p.range-field
+                        input(type="range",min="0",max="100",name="rating")#playerratingrange
+            div.modal-footer
+                a.modal-action.modal-close.waves-effect.waves-red.btn-flat.red-text Avbryt
+                button.btn-flat.waves-effect#add_player_save Lagre
