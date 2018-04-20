@@ -31,7 +31,7 @@
         <div><a class="btn" href="/teams/">Se og registrer lag her</a><span class="btnsep"></span><a class="btn" href="/players/">Se og registrer deltager</a></div>
         <div class="stats row">
           <div class="col s4">
-            <h4>Ledende <br> Lag</h4>
+            <h4>Ledende Lag</h4>
             <table>
               <tr>
                 <th>Lagnavn</th>
