@@ -7,7 +7,6 @@ $(document).ready(function(){
         onCloseEnd:on_form_close
     });
     tlanapi.countries.getCountriesInOrder(function(d){
-        console.log(d);
         if(d != false){
             countries = d;
             populateCountries();
