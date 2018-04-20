@@ -6,7 +6,8 @@ $(document).ready(function(){
     M.Modal.init(add_player_modal,{
         onCloseEnd:on_form_close
     });
-    tlanapi.getCountriesInOrder(function(d){
+    tlanapi.countries.getCountriesInOrder(function(d){
+        console.log(d);
         if(d != false){
             countries = d;
             populateCountries();
@@ -33,6 +34,7 @@ $(document).ready(function(){
                 M.toast({html:"Landet oppgitt er ikke et land",classes:"red"});
             }
         }
+        //Submit the form data
 
     });
 });
