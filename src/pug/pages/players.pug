@@ -9,7 +9,7 @@ block content
     div.fixed-action-btn
         a(href="#add_player_modal").modal-trigger.btn-floating.btn-large.waves-effect.waves-light
             i.material-icons add
-    table.striped
+    table.striped#playertable
         tr.head
             th Fornavn
             th Etternavn
@@ -18,18 +18,18 @@ block content
             th Nasjonalitet
             th Handlinger
         tr#player_proto
-            td Firstname
-            td Surname
-            td EMAIL
-            td GAMERTAG
-            td 
-                i.flag-icon.flag-icon-no(title="Norge")
-            td
-                i.material-icons.red-text delete
+            td.firstname Firstname
+            td.surname Surname
+            td.email EMAIL
+            td.tag GAMERTAG
+            td.origin
+                i.flag-icon
+            td.actions
+                i.material-icons.red-text.del delete
                 span.btnsep
-                i.material-icons.orange-text edit
+                i.material-icons.orange-text.edit edit
                 span.btnsep
-                i.material-icons.blue-text info
+                i.material-icons.blue-text.inf info
     div#add_player_modal.modal.no-autoinit
         div.modal-content
             h4 Legg til/rediger en spiller
@@ -76,3 +76,32 @@ block content
             div.modal-footer
                 a.modal-action.modal-close.waves-effect.waves-red.btn-flat.red-text Avbryt
                 button.btn-flat.waves-effect#add_player_save Lagre
+    div.modal#player_info_modal
+        div.modal-content
+            h5 Info for spiller 
+                span.fname Alexander
+                | 
+                span (
+                    span.tag Kilopoint
+                    |)
+            p Fullt navn: 
+                span.fname
+                | 
+                span.lname
+            p Gamertag:
+                span.tag Kilopoint
+            p Adresse: 
+                span.address Arntjordet 17
+                |,
+                span.postnumber 9020
+            p Telefon: 
+                span.phone +47-97661604
+            p E-post: 
+                span.email alexander@epost.no
+            p Rating: 
+                span.rating 100
+                |/100
+            p Nasjonalitet: 
+                span.nat
+        div.modal-footer
+            button.btn-flat.waves-effect.modal-close Ferdig
