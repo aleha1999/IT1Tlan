@@ -195,8 +195,14 @@ tlanapi.games.add = function(name,c){
     });
 }
 
-tlanapi.games.delete = function(team,c) {
-    $.post("/api/games/delete.php",{team:team},function(d){
+tlanapi.games.delete = function(game,c) {
+    $.post("/api/games/delete.php",{game:game},function(d){
+        c(d.success);
+    });
+}
+
+tlanapi.games.update = function(game,gamename,c){
+    $.post("/api/games/update.php",{game:game,name:gamename},function(d){
         c(d.success);
     });
 }

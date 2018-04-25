@@ -21,6 +21,10 @@ class Games {
         return DB::get($table,$rows,$where,$equals);
     }
 
+    public static function update($gameid,$name) {
+        return DB::update("Games",array("Name"),array($name),"GameID",$gameid);
+    }
+
     public static function delete($gameid) {
         $table = "Games";
         $where = "GameID";

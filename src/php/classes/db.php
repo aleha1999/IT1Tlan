@@ -2,7 +2,7 @@
 class DB {
     private static $DB_host = "localhost";
     private static $DB_username = "root";
-    private static $DB_password = null;
+    private static $DB_password = "";
     private static $DB_database = "TromsoLAN";
 
     //Function to return databse connection. Returns false on failure. Takes one variable

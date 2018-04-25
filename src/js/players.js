@@ -97,7 +97,7 @@ function updatePlayers(populate) {
     if(populate == undefined)
         populate = true;
     tlanapi.players.get(function(d){
-        if(d == false) {
+        if(d === false) {
             msg_error(config.lang.get_players_error);
             return;
         }

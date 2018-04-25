@@ -9,16 +9,16 @@ block content
         a(href="#game_add_modal").modal-trigger.btn-floating.btn-large.waves-effect.waves-light
             i.material-icons add
     h1 Administrer spill
-    table.striped#games_table
+    table.striped.no-autoinit#games_table
         tr.head
             th Spillnavn
             th Handlinger
         tr#game_row_proto
             td.name Counter-Strike: Global Offensive
             td.actions
-                i.material-icons.red-text delete
+                i.material-icons.red-text.delete delete
                 span.btnsep
-                i.material-icons.orange-text edit
+                i.material-icons.orange-text.edit edit
     div.modal#game_add_modal
         div.modal-content
             h4 Legg til/rediger spill
