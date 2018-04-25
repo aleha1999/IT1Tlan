@@ -18,7 +18,7 @@ class Games {
             $where = null;
             $equals = null;
         }
-        return DB::get($rable,$rows,$where,$equals);
+        return DB::get($table,$rows,$where,$equals);
     }
 
     public static function delete($gameid) {

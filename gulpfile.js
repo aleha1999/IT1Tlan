@@ -45,7 +45,7 @@ gulp.task('watch',function(){
 });
 
 gulp.task('img',function(){
-    return gulp.src("src/img/*").pipe(gulp.dest("build/img"));
+    return gulp.src("src/img/**/*",{base:"src/img/"}).pipe(gulp.dest("build/img"));
 });
 
 gulp.task('css',function(){

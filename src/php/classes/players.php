@@ -18,5 +18,18 @@ class Players {
             "Players",
             array("PlayerID","Firstname","Surname","Phonenumber","Tag","Rating","Nationality","Email","Address","Postnr"),$row,$playerid);
     }
+
+    public static function delete($player) {
+        return DB::delete("Players","PlayerID",$player);
+    }
+
+    public static function update($player,$firstname,$surname,$phonenumber,$tag,$rating,$nationality,$email,$address,$postnumber) {
+        return DB::update("Players",
+        array("Firstname","Surname","Phonenumber","Tag","Rating","Nationality","Email","Address","Postnr"),
+        array($firstname,$surname,$phonenumber,$tag,$rating,$nationality,$email,$address,$postnumber),
+        "PlayerID",
+        $player
+    );
+    }
 }
 ?>

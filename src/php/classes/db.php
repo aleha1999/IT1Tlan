@@ -2,7 +2,7 @@
 class DB {
     private static $DB_host = "localhost";
     private static $DB_username = "root";
-    private static $DB_password = "root";
+    private static $DB_password = null;
     private static $DB_database = "TromsoLAN";
 
     //Function to return databse connection. Returns false on failure. Takes one variable
@@ -46,6 +46,12 @@ class DB {
     public static function delete($table,$where,$equals) {
         $q = new QueryBuilder();
         $q->delete()->from($table)->where($where)->equals($equals);
+        return $q->execute()->success;
+    }
+
+    public static function update($table,$rows,$values,$where,$equals) {
+        $q = new QueryBuilder();
+        $q->update($table)->set($rows,$values)->where($where)->equals($equals);
         return $q->execute()->success;
     }
 }
