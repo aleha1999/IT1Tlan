@@ -1,0 +1,76 @@
+extends /template/template_main.pug
+
+block head
+    script(src="/js/tlanapi.js")
+    script(src="/js/teams.js")
+
+block content
+    h1 Lag-administrasjon
+    div.fixed-action-btn
+        a(href="#add_team_modal").modal-trigger.btn-floating.btn-large.waves-effect.waves-light
+            i.material-icons add
+    table.striped#teamstable
+        tr.head
+            td Logo
+            td Navn
+            td Kaptein
+            td Nasjonalitet
+            td Handlinger
+        tr#team_row_proto
+            td.logo
+                img(width="40",src="/img/logos/Cloud9_Logo.png")
+            td.name Cloud9
+            td.captain Tarik Celik
+            td.nationality
+                i(title="USA").flag-icon.flag-icon-us
+            td.actions
+                i.material-icons.orange-text.edit edit
+                span.btnsep
+                i.material-icons.red-text.delete delete
+                span.btnsep
+                i.material-icons.blue-text.editteam group
+    div#add_team_modal.modal.no-autoinit
+        div.modal-content(style="overflow-x:hidden")
+            h4 Legg til/Rediger lag
+            form#add_team_form
+                div.row
+                    div.input-field.col.s6
+                        input(type="text",name="name")#tname
+                        label(for="tname") Lagnavn
+                    div.input-field.col.s6
+                        input(name="captain",type="text").autocomplete#capselect
+                        label(for="capselect") Lagkaptein
+                div.row
+                    div.input-field.col.s6
+                        input(type="text",name="nationality").autocomplete#natselect
+                        label(for="#natselect") Nasjonalitet
+                    div.input-field.col.s6.file-field
+                        div.btn
+                            span Logofil
+                            input(type="file",name="logofile")
+                        div.file-path-wrapper
+                            input.file-path.validate(type="text")
+        div.modal-footer
+            button.modal-action.modal-close.btn-flat.red-text.waves-effect Avbryt
+            button.btn-flat.waves-effect#saveteam Lagre
+    div.modal.no-autoinit#team_setup_modal
+        div.modal-content
+            h4 Lagoppsetning
+            table.striped#team_player_table
+                tr.head
+                    th Navn
+                    th E-post
+                    th Handlinger
+                tr#team_player_proto
+                    td.name Alexander Jakobsen Hansen
+                    td.email alexander@trianite.com
+                    td.actions
+                        i.material-icons.red-text.delete delete
+            h5 Legg til ny
+            form#team_setup_form
+                div.row
+                    div.col.s10.input-field
+                        input(name="player",type="text",autocomplete="off")#pselect.autocomplete
+                        label(for="pselect") Spillers E-post
+                    div.input-field.col.s2
+                    button.btn Lagre

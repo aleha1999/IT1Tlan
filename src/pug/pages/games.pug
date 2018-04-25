@@ -1,0 +1,32 @@
+extends /template/template_main.pug
+
+block head
+    script(src="/js/tlanapi.js")
+    script(src="/js/games.js")
+
+block content
+    div.fixed-action-btn
+        a(href="#game_add_modal").modal-trigger.btn-floating.btn-large.waves-effect.waves-light
+            i.material-icons add
+    h1 Administrer spill
+    table.striped#games_table
+        tr.head
+            th Spillnavn
+            th Handlinger
+        tr#game_row_proto
+            td.name Counter-Strike: Global Offensive
+            td.actions
+                i.material-icons.red-text delete
+                span.btnsep
+                i.material-icons.orange-text edit
+    div.modal#game_add_modal
+        div.modal-content
+            h4 Legg til/rediger spill
+            form#add_game_form
+                div.row
+                    div.input-field
+                        input(type="text",name="name")#gamename
+                        label(for="gamename") Spillnavn
+        div.modal-footer
+            btn.modal-action.modal-close.btn-flat.waves-effect Lukk
+            btn.btn-flat.waves-effect#save_game Lagre
