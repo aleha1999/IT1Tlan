@@ -5,6 +5,7 @@ tlanapi.players = {};
 tlanapi.players.cache = undefined;
 tlanapi.teams = {};
 tlanapi.games = {};
+tlanapi.competitions = {};
 
 tlanapi.countries.getCountriesInOrder = function(callback) {
     $.get("/api/countries/getAllInOrder.php",function(data){
@@ -204,5 +205,68 @@ tlanapi.games.delete = function(game,c) {
 tlanapi.games.update = function(game,gamename,c){
     $.post("/api/games/update.php",{game:game,name:gamename},function(d){
         c(d.success);
+    });
+}
+
+tlanapi.competitions.add = function(data,c) {
+    $.ajax({
+        url:"/api/competitions/add.php",
+        data:data,
+        type:"POST",
+        processData:false,
+        contentType:false,
+        success:function(data) {
+            if(data.success)
+                c(true);
+            else
+                c(false);
+        }
+    });
+}
+
+tlanapi.competitions.update = function(data,c){
+    $.ajax({
+        url:"/api/competitions/update.php",
+        data:data,
+        type:"POST",
+        processData:false,
+        contentType:false,
+        success:function(data) {
+            if(data.success)
+                c(true);
+            else
+                c(false);
+        }
+    });
+}
+
+tlanapi.competitions.get = function(c) {
+    $.get("/api/competitions/get.php",function(data){
+        if(data.success === true) {
+            c(data.data);
+        } else {
+            c(false);
+        }
+    });
+}
+
+tlanapi.competitions.delete = function(comp,c) {
+    $.post("/api/competitions/delete.php",{compid:comp},function(d){
+        c(d.success);
+    });
+}
+
+tlanapi.competitions.addParticipatingTeam = function(comp,team,c) {
+    $.post("/api/competitions/addparticipatingteams.php",{comp:comp,team:team},function(d){
+        c(d.success);
+    });
+}
+
+tlanapi.competitions.getParticipatingTeams = function(comp,c) {
+    $.get("/api/competitions/getparticipatingteams.php",{comp:comp},function(d){
+        if(d.success == true)
+            c(d.data);
+        else
+            c(false);
     });
 }

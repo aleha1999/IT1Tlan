@@ -1,0 +1,74 @@
+extends /template/template_main.pug
+
+block head
+    script(src="/js/tlanapi.js")
+    script(src="/js/competitions.js")
+block content
+    div.fixed-action-btn
+        a(href="#add_comp_modal").btn-floating.btn-large.modal-trigger
+            i.material-icons add
+    h1 Konkurranser
+    table.striped#comps_table
+        tr.head
+            th Tittel
+            th Spill
+            th Dato
+            th Handlinger
+        tr#comp_row_proto
+            th.title CSGO Tournament 1
+            th.game Counter-Strike: Global Offensive
+            th.date 00/00/00 00:00
+            th.actions
+                i.material-icons.red-text.delete delete
+                span.btnsep
+                i.material-icons.orange-text.edit edit
+                span.btnsep
+                i.material-icons.blue-text.manage group
+    div#add_comp_modal.modal.no-autoinit
+        div.modal-content
+            h4 Legg til/rediger konkurranse
+            form#add_comp_form
+                div.row
+                    div.col.s12.input-field
+                        input(type="text",name="title")#addcomptitle
+                        label(for="addcomptitle") Tittel
+                div.row
+                    div.col.s12.input-field
+                        select(name="game")#addcompgame
+                            option(value="asd") ASD!
+                        label(for="addcompgame") Spill
+                div.row
+                    div.col.s6.input-field
+                        input(type="text",name="date").datepicker#date
+                        label(for="date") Dato
+                    div.col.s6.input-field
+                        input(type="text",name="time").timepicker#time
+                        label(for="time") Tid
+        div.modal-footer
+            button.btn-flat.waves-effect.modal-action.modal-close Lukk
+            button.btn-flat.waves-effect#comp_form_save Lagre
+    div#comp_team_manage_modal.modal
+        div.modal-content
+            h4 Administrer lagdeltakelse
+            table#participating_teams
+                tr.head
+                    td Lagnavn
+                    td Poeng
+                    td Handlinger
+                tr#participating_team_row_proto
+                    td.name Navn
+                    td.points 0
+                    td.actions
+                        i.material-icons.addpoint(title="Legg til poeng") add
+                        span.btnsep
+                        i.material-icons.subpoint(title="Trekk fra poeng") remove
+                        span.btnsep
+                        i.material-icons.delete delete
+            form#add_team_form
+                h5 Legg til lag
+                div.row
+                    div.col.s12.input-field
+                        input(type="text")#teamselect.autocomplete
+                        label(for="teamselect") Lagnavn
+                    div.col.s12.input-field.center-align
+                        button.btn.waves-effect.waves-light#add_team_save Legg til

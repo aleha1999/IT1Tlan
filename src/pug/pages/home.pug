@@ -12,23 +12,17 @@ block content
             span.btnsep
             a.btn(href="/players/") Se og registrer deltager
         div.stats.row
-            div.col.s4
+            div.col.s6
                 h4 Ledende Lag
                 table
                     tr
                         th Lagnavn
                         th Poeng
-            div.col.s4
+                    include parts/leadingteams.php
+            div.col.s6
                 h4 Kommende Konkurranser
                 table
                     tr
                         th Konkurranse
                         th Tid
-                        th Vinner
-            div.col.s4
-                h4 Fullførte Konkurranser
-                table
-                    tr
-                        th Konkurranse
-                        th Tid
-                        th Spill
+                    include parts/upcomingcomplist.php

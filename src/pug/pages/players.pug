@@ -69,7 +69,9 @@ block content
                         input(type="email",name="email",required)#email
                         label(for="email") E-post
                 h5 Spillerrating
-                h6 0-100
+                h6 
+                    span#ratingval 0
+                    |/100
                 div.row
                     p.range-field
                         input(type="range",min="0",max="100",name="rating")#playerratingrange
@@ -103,5 +105,7 @@ block content
                 |/100
             p Nasjonalitet: 
                 span.nat
+            p Lag: 
+                span.teams
         div.modal-footer
             button.btn-flat.waves-effect.modal-close Ferdig

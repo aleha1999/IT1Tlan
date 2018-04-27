@@ -58,11 +58,12 @@ function on_modal_close() {
 function updateTeams() {
     $("#teamstable tr").fadeOut(function(){
         tlanapi.teams.get(function(d){
-        teams = d;
-        tlanapi.players.get(function(){
-            populateTeamsTable();
+            console.log(d);
+          teams = d;
+          tlanapi.players.get(function(){
+              populateTeamsTable();
+          });
         });
-    });
     });
 }
 
@@ -80,7 +81,9 @@ function populateTeamsTable() {
         $(row).find(".captain").html(
             tlanapi.players.getName(team.Captain)
         );
-        $(row).attr("team",team.TeamID)
+        $(row).find(".rating").html(team.rating);
+        $(row).attr("team",team.TeamID);
+        $(row).find(".link").attr("href","timetable.php?team="+team.TeamID);
         $("#teamstable").append(row);
     });
     bindEventsToTeamRows();

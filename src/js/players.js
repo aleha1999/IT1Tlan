@@ -45,6 +45,9 @@ function populateCountries() {
     $("#nat").autocomplete({
         data:autoCompleteData
     });
+    document.getElementById("playerratingrange").oninput = function() {
+        $("#ratingval").html($("#playerratingrange").val());
+    }
 }
 
 function on_form_close() {
@@ -175,7 +178,6 @@ function bindEventsToPlayerRows() {
 function showInfoFor(player) {
     var playerinfo;
     playerdata.forEach(function(p){
-        console.log(player  );
         if(playerinfo != undefined) return;
         if(p.PlayerID == player)
             playerinfo = p;
@@ -193,6 +195,17 @@ function showInfoFor(player) {
     sel(".rating").html(playerinfo.Rating);
     sel(".nat").html("").append("<i class='flag-icon flag-icon-"+playerinfo.Nationality.toLowerCase()+"'></i>").append("<span> "+tlanapi.countries.getName(playerinfo.Nationality)+"</span>");
     $("#player_info_modal").modal("open");
+    $.get("/api/players/getTeams.php?player="+player,function(d){
+        var product = "";
+        d.data.forEach(function(t,i){
+            if(i > 0)
+                product += ",";
+            product += t.Name;
+        });
+        if(d.data.length == 0)
+            product = "Ingen";
+        sel(".teams").html(product);
+    });
 }
 
 function setFormValue(name,val) {

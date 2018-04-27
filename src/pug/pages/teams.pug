@@ -14,6 +14,7 @@ block content
             td Logo
             td Navn
             td Kaptein
+            td Gj. Rating
             td Nasjonalitet
             td Handlinger
         tr#team_row_proto
@@ -21,6 +22,7 @@ block content
                 img(width="40",src="/img/logos/Cloud9_Logo.png")
             td.name Cloud9
             td.captain Tarik Celik
+            td.rating 50
             td.nationality
                 i(title="USA").flag-icon.flag-icon-us
             td.actions
@@ -29,6 +31,9 @@ block content
                 i.material-icons.red-text.delete delete
                 span.btnsep
                 i.material-icons.blue-text.editteam group
+                span.btnsep
+                a.link
+                    i.material-icons.blue-text event
     div#add_team_modal.modal.no-autoinit
         div.modal-content(style="overflow-x:hidden")
             h4 Legg til/Rediger lag
@@ -74,3 +79,5 @@ block content
                         label(for="pselect") Spillers E-post
                     div.input-field.col.s2
                     button.btn Lagre
+        div.modal-footer
+            a.modal-action.modal-close.btn-flat.waves-effect Lukk

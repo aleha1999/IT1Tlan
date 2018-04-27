@@ -1,12 +1,20 @@
 <?php
 require_once("db.php");
 class Teams {
-    public static function get($teamid = "all") {
+    public static function get() {
         $q = new QueryBuilder();
-        $q->select(array('TeamID','Captain','Name','Nationality',"Logo"))->from("Teams");
-        if($teamid != "all") {
-            $q->where('TeamID')->equals($teamid);
-        }
+        $q->query = "
+        SELECT TeamID, Captain, Name, Nationality, Logo, rating FROM Teams LEFT JOIN (
+            SELECT
+                Team, ROUND(AVG(Rating),1) as rating
+            FROM
+                PlayerTeamParticipation,
+                Players
+            WHERE
+                Players.PlayerID = PlayerTeamParticipation.Player
+            GROUP BY
+            	Team) b
+        ON Teams.TeamID = b.Team";
         $q->execute();
         return $q->getResults();
     }

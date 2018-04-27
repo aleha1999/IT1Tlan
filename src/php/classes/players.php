@@ -31,5 +31,13 @@ class Players {
         $player
     );
     }
+
+    public static function getTeams($player) {
+        $q = "SELECT l.Player,l.Team, Teams.Name FROM (SELECT * FROM PlayerTeamParticipation WHERE Player = ?) l INNER JOIN Teams ON l.Team = Teams.TeamID";
+        $qb = new QueryBuilder();
+        $qb->query = $q;
+        $qb->vars = array($player);
+        return $qb->execute()->getResults();
+    }
 }
 ?>
